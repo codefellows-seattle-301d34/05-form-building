@@ -100,7 +100,12 @@ articleView.create = () => {
 
 
   // TODO: Use our interface to the Handblebars template to put this new article into the DOM:
+  let article = new Article({
+    title: $('#article-title').val(),
+    //do this for all of them. Separate by , except for the last one
+    publishedOn: $('#article-published:checked').length ? new Date() : null,
 
+  });
 
   // TODO: Activate the highlighting of any code blocks; look at the documentation for hljs to see how to do this by placing a callback function in the .each():
   $('pre code').each();
