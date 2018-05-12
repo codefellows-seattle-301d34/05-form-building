@@ -117,6 +117,7 @@ articleView.create = () => {
     authorUrl: $('#article-authorUrl').val(),
     category: $('#article-category').val(),
     body: $('#article-body').val(),
+    publishedOn: $('#article-published:checked').length ? new Date() : null,
   });
 
 
