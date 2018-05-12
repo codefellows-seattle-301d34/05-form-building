@@ -74,9 +74,15 @@ articleView.setTeasers = () => {
   });
 };
 
+
+
+
+
 // COMMENT: Where is this function called? Why?
 // This function is being called on new.html to allow the
 articleView.initNewArticlePage = () => {
+  let newTemplate = Handlebars.compile($('#new-article-template').text());
+
   // TODO: Ensure the main .tab-content area is revealed. We might add more tabs later or otherwise edit the tab navigation.
 
 
@@ -90,13 +96,19 @@ articleView.initNewArticlePage = () => {
 
   // TODO: Add an event handler to update the preview and the export field if any inputs change.
   $('#new-form').on('change', 'input', 'textarea', articleView.create);
+  return newTemplate(this);
+
 };
+
+
+
 
 //This will be our callback for when we change focus on the new page
 articleView.create = () => {
   // TODO: Set up a variable to hold the new article we are creating.
-  // Clear out the #articles element, so we can put in the updated preview
 
+  // Clear out the #articles element, so we can put in the updated preview
+  // $('#articles').hide();
 
   // TODO: Instantiate an article based on what's in the form fields:
   let newArticle = new Article({
@@ -105,13 +117,13 @@ articleView.create = () => {
     authorUrl: $('#article-authorUrl').val(),
     category: $('#article-category').val(),
     body: $('#article-body').val(),
-    publishedOn: $('#article-published:checked').length ? new Date() : null,
   });
 
 
   // TODO: Use our interface to the Handblebars template to put this new article into the DOM:
-  // newArticle.toHtml(); //and append it like on line 121 so all NEW ones show
-  newArticle.forEach(articleElement => $('#articles').append(articleElement.toHtml()));
+  newArticle.toHtml(); //and append it like on line 121 so all NEW ones show
+  $('#articles').append(newArticle);
+
 
   // TODO: Activate the highlighting of any code blocks; look at the documentation for hljs to see how to do this by placing a callback function in the .each():
   $('pre code').each(function (i, block) {
@@ -119,15 +131,16 @@ articleView.create = () => {
   });
 
   // TODO: Show our export field, and export the new article as JSON, so it's ready to copy/paste into blogArticles.js:
-
   //it changed on the focus - look for events
 
 };
 
+
+
+
 // COMMENT: Where is this function called? Why?
 // PUT YOUR RESPONSE HERE
 articleView.initIndexPage = () => {
-  //(articleElement after forEach is like an index. this is appending articles that already exist.
   articles.forEach(articleElement => $('#articles').append(articleElement.toHtml()));
   articleView.populateFilters();
   articleView.handleCategoryFilter();
