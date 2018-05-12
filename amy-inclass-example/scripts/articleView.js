@@ -96,8 +96,8 @@ articleView.initNewArticlePage = () => {
 
   // TODO: Add an event handler to update the preview and the export field if any inputs change.
   $('#new-form').on('change', 'input', 'textarea', articleView.create);
-  return newTemplate(this);
 
+  return newTemplate(this);
 };
 
 
@@ -106,9 +106,9 @@ articleView.initNewArticlePage = () => {
 //This will be our callback for when we change focus on the new page
 articleView.create = () => {
   // TODO: Set up a variable to hold the new article we are creating.
-
+  let newPost = [];
   // Clear out the #articles element, so we can put in the updated preview
-  // $('#articles').hide();
+  $('#articles').hide();
 
   // TODO: Instantiate an article based on what's in the form fields:
   let newArticle = new Article({
@@ -122,8 +122,12 @@ articleView.create = () => {
 
 
   // TODO: Use our interface to the Handblebars template to put this new article into the DOM:
-  newArticle.toHtml(); //and append it like on line 121 so all NEW ones show
-  $('#articles').append(newArticle);
+  // newArticle.toHtml(); //and append it like on line 121 so all NEW ones show
+  // $('#articles').append(newArticle);
+  newPost.forEach(articleObject => newArticle.push(new Article(articleObject)))
+  newPost.forEach(articleElement => $('#articles').append(articleElement.toHtml()));
+
+  $('#articles').fadeIn(750);
 
 
   // TODO: Activate the highlighting of any code blocks; look at the documentation for hljs to see how to do this by placing a callback function in the .each():
