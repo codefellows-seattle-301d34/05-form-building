@@ -41,6 +41,16 @@
            4. Author's URL
            5. Article category
            6. Some way to know if this article is a draft or is published -->
+           <form id="new-form">
+             <label>
+               <input type="text" id="article-title" placeholder="Article Title" required>
+              <textarea id="article-body" cols="30" rows="10"></textarea>
+              <label>
+                <input type="checkbox" id ="article-published">Published
+              </label>
+             </label>
+             
+           </form>
       </section>
 
       <section id="articles" class="tab-content">
@@ -49,6 +59,9 @@
 
       <section id="article-export">
         <!-- TODO: Refer to the preview image to see what we will be building here: we need a container of some kind to hold a JSON export of our article. Ideally this container would show only a incipit (short preview) of the JSON and also be clickable to allow easy selection of the text it holds. What kind of element could we use for this? -->
+<label class="pull-right">
+  <input type="text" readonly id="article-json">When finalized copy the above JSON and paste into blogArticle.js
+</label>
       </section>
 
     </main>
