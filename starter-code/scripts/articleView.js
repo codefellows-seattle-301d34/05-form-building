@@ -83,12 +83,14 @@ articleView.initNewArticlePage = () => {
   // TODO: The new articles we create will be copy/pasted into our source data file.
   // Set up this "export" functionality. We can hide it for now, and show it once we have data to export.
 
+  $('#article-export').hide();
+
   $('#article-json').on('focus', function(){
     this.select();
   });
 
   // TODO: Add an event handler to update the preview and the export field if any inputs change.
-
+$('#new-form').on('change', 'input, text-area', articleView.create);
 };
 
 articleView.create = () => {
@@ -97,22 +99,40 @@ articleView.create = () => {
 
 
   // TODO: Instantiate an article based on what's in the form fields:
-
+   let newArticle = new Article({
+     title: $('#article-title').val(),
+     author: $('#article-author').val(),
+     // sets the value of "publishedOn" here
+     publishedOn: $('#article-published:checked').length ? new Date () : null,
+    //  title: $('#article-title').val(),
+    //  title: $('#article-title').val(),
+    //  title: $('#article-title').val(),
+    //  title: $('#article-title').val(),
+   });
 
   // TODO: Use our interface to the Handblebars template to put this new article into the DOM:
+  // THIS IS NOT WORKING RIGHT NOW
+  // THE FOLLOWING CODE NEEDS TO BE ADJUSTED
+  newArticle.toHtml();
 
 
   // TODO: Activate the highlighting of any code blocks; look at the documentation for hljs to see how to do this by placing a callback function in the .each():
-  $('pre code').each();
+  $('pre code').each(function(i, block) {
+    hljs.highlightBlock(block);
+  });
 
   // TODO: Show our export field, and export the new article as JSON, so it's ready to copy/paste into blogArticles.js:
+// "Think about what you know about JSON"
+// "Code that will run on change of focus"
+// "Use this as callback function up above as articleView.create =()"
+// Use articleView.create as callback function for articleView.initNewArticlePage
 
 };
 
 // COMMENT: Where is this function called? Why?
 // PUT YOUR RESPONSE HERE
 articleView.initIndexPage = () => {
-  articles.forEach(article => $('#articles').append(article.toHtml()));
+  articles.forEach(articleElement => $('#articles').append(articleElement.toHtml()));
   articleView.populateFilters();
   articleView.handleCategoryFilter();
   articleView.handleAuthorFilter();
