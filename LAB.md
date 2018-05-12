@@ -2,7 +2,7 @@
 ===
 ## Code Wars Challenge
 
-Complete [Kata 1](https://www.codewars.com/kata/regex-validate-pin-code) and [Kata 2](https://www.codewars.com/kata/alternate-capitalization), then follow the submission instructions from Lab 01. Note that the instructions must be followed for *each* of these challenges.
+Complete [Kata 1](https://www.codewars.com/kata/how-long-will-it-take-the-train-to-reach-its-final-destination/train/javascript) and [Kata 2](https://www.codewars.com/kata/convert-string-to-camel-case/train/javascript), then follow the submission instructions from Lab 01. Note that the instructions must be followed for *each* of these challenges.
 
 ## Lab 05 Submission Instructions
 Follow the submission instructions from Lab 01.
