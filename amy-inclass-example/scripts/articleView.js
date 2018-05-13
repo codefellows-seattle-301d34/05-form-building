@@ -105,10 +105,11 @@ articleView.initNewArticlePage = () => {
 
 //This will be our callback for when we change focus on the new page
 articleView.create = () => {
+  console.log ('is this even working? AUGH!!!!')
   // TODO: Set up a variable to hold the new article we are creating.
   let newPost = [];
   // Clear out the #articles element, so we can put in the updated preview
-  $('#articles').hide();
+  $('#articles').html('');
 
   // TODO: Instantiate an article based on what's in the form fields:
   let newArticle = new Article({
@@ -122,8 +123,7 @@ articleView.create = () => {
 
 
   // TODO: Use our interface to the Handblebars template to put this new article into the DOM:
-  // newArticle.toHtml(); //and append it like on line 121 so all NEW ones show
-  // $('#articles').append(newArticle);
+  $('#articles').append(newArticle.toHtml()); //and append it like on line 121 so all NEW ones show
   newPost.forEach(articleObject => newArticle.push(new Article(articleObject)))
   newPost.forEach(articleElement => $('#articles').append(articleElement.toHtml()));
 
