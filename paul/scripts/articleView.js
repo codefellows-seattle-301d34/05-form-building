@@ -80,9 +80,10 @@ articleView.initNewArticlePage = () => {
   // DONE: Ensure the main .tab-content area is revealed. We might add more tabs later or otherwise edit the tab navigation.
   $('main .tab-content').show();
 
-  // TODO: The new articles we create will be copy/pasted into our source data file.
+  // DONE: The new articles we create will be copy/pasted into our source data file.
   // Set up this "export" functionality. We can hide it for now, and show it once we have data to export.
-  $('#article-export').hide();
+  $('#article-export').append($('<p id="json-export"></p'));
+  $('#json-export').hide();
 
   $('#article-json').on('focus', function(){
     this.select();
@@ -115,8 +116,12 @@ articleView.create = () => {
     hljs.hightlightBlock(block);
   });
 
-  // TODO: Show our export field, and export the new article as JSON, so it's ready to copy/paste into blogArticles.js:
-
+  // DONE: Show our export field, and export the new article as JSON, so it's ready to copy/paste into blogArticles.js:
+  if ($('#json-export').length) {
+    $('#json-export').empty();
+  }
+  $('#json-export').show();
+  $('#json-export').append(JSON.stringify(newArticle));
 };
 
 // COMMENT: Where is this function called? Why?
