@@ -1,7 +1,7 @@
 'use strict';
 
 var rawData = [
-  {"author":"Tracy Williams","authorUrl":"Tracy.com","title":"Blog article formatting test","category":"coding","body":"<p>this is a test</p><p>these should be correctly formatted paragraphs.</p><p>are they?</p>","publishedOn":"2018-05-12T00:02:49.494Z","daysAgo":0,"publishStatus":"published 0 days ago"},
+  {"author":"Tracy","authorUrl":"tracy.com","title":"A Test of Marked and HIghlight libraries","category":"CODE","body":"<h2 id=\"marked-js-heading\">Marked.js Heading</h2>\n<pre><code>\nfunction testing() {\n  return 'Hello World!';\n}</code></pre>\n\n<p>This <em>isn&#39;t</em> code.</p>\n","publishedOn":null,"daysAgo":17665,"publishStatus":"(draft)"},
   {
     title:       'Bob Ross Ipsum',
     category:    'art',

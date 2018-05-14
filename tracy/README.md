@@ -15,9 +15,15 @@ The application utilizes JQuery and Handlebars libraries.  Code is orgainzed int
 
 Handlebars is used to create and populate <article> elements for blog articles and new article preview, and <option> elements for filters.
 
+Markedjs is included allowing use of markdown in the blog article.
+
+Highlightjs is included. Code blocks can be surrounded by <pre><code> tags to provide language-specific hightlighting.
+
 ## Change Log
 
 
 ## Credits and Collaborations
 JQuery: www.jquery.com
 Handlebars: www.handlebarsjs.com
+Hightlightjs: highlightjs.org
+Markedjs: github.com/chjj/marked

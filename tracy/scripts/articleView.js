@@ -78,13 +78,13 @@ articleView.setTeasers = () => {
 // It's called from a script element at the bottom of new.html. Called so that the functions specific to that page (in particular the event listener) get loaded.
 
 articleView.initNewArticlePage = () => {
-  // TODO: Ensure the main .tab-content area is revealed. We might add more tabs later or otherwise edit the tab navigation.
+  // DONE: Ensure the main .tab-content area is revealed. We might add more tabs later or otherwise edit the tab navigation.
   $('nav .tab:first').click();
 
   hljs.initHighlightingOnLoad();
   // hljs.configure({useBR: true});
 
-  // TODO: The new articles we create will be copy/pasted into our source data file.
+  // DONE: The new articles we create will be copy/pasted into our source data file.
   // Set up this "export" functionality. We can hide it for now, and show it once we have data to export.
   $('#article-export').hide();
 
@@ -92,7 +92,7 @@ articleView.initNewArticlePage = () => {
     this.select();
   });
 
-  // TODO: Add an event handler to update the preview and the export field if any inputs change.
+  // DONE: Add an event handler to update the preview and the export field if any inputs change.
   $('#new-form').on('change', 'input, textarea', articleView.createPreview);
 };
 
@@ -117,9 +117,8 @@ articleView.createPreview = () => {
   // DONE: Use our interface to the Handblebars template to put this new article into the DOM:
   $('#articles').append(newArticle.toHtml());
 
-  // TODO: Activate the highlighting of any code blocks; look at the documentation for hljs to see how to do this by placing a callback function in the .each():
-  // newArticle.body = newArticle.body.replace(/\~(.*)\~/g, 'THIS WAS BETWEEN TILDES');
-  // $('div.code').each(function(i, block) {
+  // DONE: Activate the highlighting of any code blocks; look at the documentation for hljs to see how to do this by placing a callback function in the .each():
+
   $('pre code').each(function(i, block) {
     hljs.highlightBlock(block);
   });
@@ -136,6 +135,9 @@ articleView.createPreview = () => {
 // in the face of what we've been taught previously...
 articleView.initIndexPage = () => {
   articles.forEach(articleElement => $('#articles').append(articleElement.toHtml()));
+  $('pre code').each(function(i, block) {
+    hljs.highlightBlock(block);
+  });
   articleView.populateFilters();
   articleView.handleCategoryFilter();
   articleView.handleAuthorFilter();
