@@ -90,13 +90,17 @@ articleView.initNewArticlePage = () => {
   // Set up this "export" functionality. We can hide it for now, and show it once we have data to export.
   $('#article-export').hide();
 
+  //SAME
   $('#article-json').on('focus', function(){
     this.select();
+    //DIFFERENT
+    //document.execCommand('copy');
   });
 
-  // TODO: Add an event handler to update the preview and the export field if any inputs change.
+  // DONE: Add an event handler to update the preview and the export field if any inputs change.
   $('#new-form').on('change', 'input', 'textarea', articleView.create);
 
+  //DIFFERENT
   return newTemplate(this);
 };
 
@@ -111,7 +115,7 @@ articleView.create = () => {
   // Clear out the #articles element, so we can put in the updated preview
   $('#articles').html('');
 
-  // TODO: Instantiate an article based on what's in the form fields:
+  // DONE: Instantiate an article based on what's in the form fields:
   let newArticle = new Article({
     title: $('#article-title').val(),
     author: $('#article-author').val(),
@@ -122,8 +126,10 @@ articleView.create = () => {
   });
 
 
-  // TODO: Use our interface to the Handblebars template to put this new article into the DOM:
+  // DONE: Use our interface to the Handblebars template to put this new article into the DOM:
   $('#articles').append(newArticle.toHtml()); //and append it like on line 121 so all NEW ones show
+
+
   newPost.forEach(articleObject => newArticle.push(new Article(articleObject)))
   newPost.forEach(articleElement => $('#articles').append(articleElement.toHtml()));
 
