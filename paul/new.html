@@ -10,9 +10,23 @@
     <link rel="stylesheet" href="styles/layout.css">
     <link rel="stylesheet" href="styles/modules.css">
     <!-- NOTE (stretch goal): To fully incorporate the highlighting library "hljs" we need to fill the empty link tag below to refer to a CSS file that will handle our text highlighting -->
-    <link>
+    <link rel="stylesheet" href="/vendor/styles/default.css">
     <!-- TODO: We want our new article form to be able to display a preview of the article that is being entered. Thus, we need code here that will recreate the same structure of our other articles. What do you think we need to add here? -->
-    </head>
+    <script id="article-template" type="text/x-handlebars-template">
+      <article class="clearfix" data-author="{{author}}" data-category="{{category}}">
+        <header>
+          <h1>{{title}}</h1>
+          <div>
+            By <address><a href="{{authorUrl}}">{{author}}</a></address>
+            {{publishStatus}}
+          </div>
+        </header>
+        <section class="article-body"><p>{{body}}</p></section>
+        <a href="#" class="read-on">Read on &rarr;</a>
+      </article>
+    </script>
+
+  </head>
   <body>
     <header class="clearfix">
       <section class="pull-left">
@@ -34,7 +48,7 @@
 
       <section id="write" class="tab-content">
         <h1>Create New Article</h1>
-        <!-- TODO: Set up a form to accept user input for a new blog article. Remember that we need:
+        <!-- DONE: Set up a form to accept user input for a new blog article. Remember that we need:
            1. Article title
            2. Article body
            3. Article author
@@ -45,9 +59,18 @@
           <label>
             <input id="article-title" type="text" placeholder="Article Title" required />
           </label>
-          <textarea id="article-body" cols="10" rows="10"></textarea>
+          <textarea id="article-body" cols="10" rows="5" required></textarea>
           <label>
-            <input type="checkbox" id="article-published" />Published
+            <input id="article-author" type="text" placeholder="Author Name" required />
+          </label>
+          <label>
+            <input id="author-url" type="text" placeholder="URL" required />
+          </label>
+          <label>
+            <input id="article-category" type="text" placeholder="Category" required />
+          </label>
+          <label>
+            <input type="checkbox" id="article-published" required />Published
           </label>
         </form>
       </section>
@@ -57,7 +80,9 @@
       </section>
 
       <section id="article-export">
-        <!-- TODO: Refer to the preview image to see what we will be building here: we need a container of some kind to hold a JSON export of our article. Ideally this container would show only a incipit (short preview) of the JSON and also be clickable to allow easy selection of the text it holds. What kind of element could we use for this? -->
+        <!-- DONE: Refer to the preview image to see what we will be building here: we need a container of some kind to hold a JSON export of our article. Ideally this container would show only a incipit (short preview) of the JSON and also be clickable to allow easy selection of the text it holds. What kind of element could we use for this? -->
+        <!-- <label id="json-export" class="pull-right">
+        </label> -->
         <label class="pull-right">
           <input id="article-json" type="text" readonly />
           When finalized, copy the above JSON and paste into blogArticle.js
@@ -75,13 +100,16 @@
     <script src="scripts/blogArticles.js"></script>
     <script src="scripts/article.js"></script>
     <script src="scripts/articleView.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/languages/go.min.js"></script>
     <script>
-      // TODO: We will need to call a function here to initialize the behaviors on this page, once we get them built out. Why?
-      // (Look at the bottom of index.html as a reference. Since we are now using our JS on two different HTML pages that have different needs as to what parts of the code they utilize, we need to build a function that inializes each page.)
+      // DONE: We will need to call a function here to initialize the behaviors on this page, once we get them built out. Why?
+      // (Look at the bottom of index.html as a reference. Since we are now using our JS on two different HTML pages that have different needs as to what parts of the code they utilize, we need to build a function that initializes each page.)
       //  Hint: Look in articleView.js for a function that does this.
+      
+      articleView.initNewArticlePage();
 
       // COMMENT: What is this function doing? Why do we need it?
-      // PUT YOUR RESPONSE HERE
+      // This function is calling the articleView.create function in order to populate the article preview with data as the user inputs more information. We need it to create the interactivity of the form page, to capture and present the information the user inputs. 
     </script>
   </body>
 </html>
