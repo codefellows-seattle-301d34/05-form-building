@@ -75,7 +75,7 @@ articleView.setTeasers = () => {
 };
 
 // COMMENT: Where is this function called? Why?
-// PUT YOUR RESPONSE HERE
+// This function is called at the bottom of new.html, in order to render allow users to input data into the form field and have this data create a new Article instance. This is also necessary in order to render the new article preview to the DOM.
 articleView.initNewArticlePage = () => {
   // DONE: Ensure the main .tab-content area is revealed. We might add more tabs later or otherwise edit the tab navigation.
   $('main .tab-content').show();
@@ -83,7 +83,6 @@ articleView.initNewArticlePage = () => {
   // TODO: The new articles we create will be copy/pasted into our source data file.
   // Set up this "export" functionality. We can hide it for now, and show it once we have data to export.
   $('#article-export').hide();
-
 
   $('#article-json').on('focus', function(){
     this.select();
