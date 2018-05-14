@@ -85,7 +85,7 @@ articleView.initNewArticlePage = () => {
   $('#article-export').hide();
 
   $('#article-json').on('focus', function(){
-    $(this).select();
+    this.select();
   });
 
   // DONE: Add an event handler to update the preview and the export field if any inputs change.
@@ -117,7 +117,7 @@ articleView.create = () => {
 
   // DONE: Show our export field, and export the new article as JSON, so it's ready to copy/paste into blogArticles.js:
   $('#article-export').show();
-  $('#article-json').attr('placeholder', JSON.stringify(newArticle));
+  $('#article-json').val(JSON.stringify(newArticle));
 };
 
 // COMMENT: Where is this function called? Why?
