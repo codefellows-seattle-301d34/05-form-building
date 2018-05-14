@@ -12,6 +12,7 @@ function Article (rawDataObj) {
 }
 
 Article.prototype.toHtml = function() {
+  console.log(this)
   let template = Handlebars.compile($('#article-template').text());
 
   this.daysAgo = parseInt((new Date() - new Date(this.publishedOn))/60/60/24/1000);
