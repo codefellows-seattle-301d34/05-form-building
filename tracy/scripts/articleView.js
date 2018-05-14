@@ -81,6 +81,9 @@ articleView.initNewArticlePage = () => {
   // TODO: Ensure the main .tab-content area is revealed. We might add more tabs later or otherwise edit the tab navigation.
   $('nav .tab:first').click();
 
+  hljs.initHighlightingOnLoad();
+  // hljs.configure({useBR: true});
+
   // TODO: The new articles we create will be copy/pasted into our source data file.
   // Set up this "export" functionality. We can hide it for now, and show it once we have data to export.
   $('#article-export').hide();
@@ -106,7 +109,7 @@ articleView.createPreview = () => {
     title: $('#article-title').val(),
     author: $('#article-author').val(),
     authorUrl: $('#article-authorUrl').val(),
-    body: marked($('#article-body').val()).replace(/\n/g, ''),
+    body: marked($('#article-body').val()),
     publishedOn: $('#article-publish:checked').length ? new Date() : null,
     category: $('#article-category').val()
   });
@@ -115,9 +118,11 @@ articleView.createPreview = () => {
   $('#articles').append(newArticle.toHtml());
 
   // TODO: Activate the highlighting of any code blocks; look at the documentation for hljs to see how to do this by placing a callback function in the .each():
+  // newArticle.body = newArticle.body.replace(/\~(.*)\~/g, 'THIS WAS BETWEEN TILDES');
   // $('div.code').each(function(i, block) {
-  //   hljs.highlightBlock(block);
-  // });
+  $('pre code').each(function(i, block) {
+    hljs.highlightBlock(block);
+  });
 
   // DONE: Show our export field, and export the new article as JSON, so it's ready to copy/paste into blogArticles.js:
   let s = JSON.stringify(newArticle);
