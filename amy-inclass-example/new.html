@@ -11,14 +11,14 @@
     <link rel="stylesheet" href="styles/modules.css">
     <!-- NOTE (stretch goal): To fully incorporate the highlighting library "hljs" we need to fill the empty link tag below to refer to a CSS file that will handle our text highlighting -->
     <link>
-    <!-- TODO: We want our new article form to be able to display a preview of the article that is being entered. Thus, we need code here that will recreate the same structure of our other articles. What do you think we need to add here? -->
+    <!-- DONE: We want our new article form to be able to display a preview of the article that is being entered. Thus, we need code here that will recreate the same structure of our other articles. What do you think we need to add here? -->
     <script id="article-template" type="text/x-handlebars-template">
       <article class="template" data-category="{{category}}">
         <header>
           <h1>{{title}}</h1>
           <div>
             By <address><a href="{{authorUrl}}">{{author}}</a></address>
-            published <time pubdate datetime="2000-01-01">{{publishedOn}}</time>
+            {{publishStatus}}<time pubdate datetime="2000-01-01"></time>
           </div>
         </header>
         <section class="article-body">{{{body}}}</section>
@@ -80,7 +80,7 @@
       </section>
 
       <section id="article-export">
-        <!-- TODO: Refer to the preview image to see what we will be building here: we need a container of some kind to hold a JSON export of our article. Ideally this container would show only a incipit (short preview) of the JSON and also be clickable to allow easy selection of the text it holds. What kind of element could we use for this? -->
+        <!-- DONE: Refer to the preview image to see what we will be building here: we need a container of some kind to hold a JSON export of our article. Ideally this container would show only a incipit (short preview) of the JSON and also be clickable to allow easy selection of the text it holds. What kind of element could we use for this? -->
         <label class="pull-right">
           <input type="text" id="article-json" readonly placeholder="">
           When finalized, copy the above JSON and paste into blogArticles.js
@@ -99,12 +99,12 @@
     <script src="scripts/article.js"></script>
     <script src="scripts/articleView.js"></script>
     <script>
-      // TODO: We will need to call a function here to initialize the behaviors on this page, once we get them built out. Why?
+      // DONE: We will need to call a function here to initialize the behaviors on this page, once we get them built out. Why?
       // (Look at the bottom of index.html as a reference. Since we are now using our JS on two different HTML pages that have different needs as to what parts of the code they utilize, we need to build a function that inializes each page.)
       //  Hint: Look in articleView.js for a function that does this.
       articleView.initNewArticlePage();
-      // COMMENT: What is this function doing? Why do we need it?
-      // PUT YOUR RESPONSE HERE
+      // COMMENTED: What is this function doing? Why do we need it?
+      // This function is calling the initializing of the new articles on the page. We don't need it to run on all our html pages, just this one so it is called specifically here.
     </script>
   </body>
 </html>

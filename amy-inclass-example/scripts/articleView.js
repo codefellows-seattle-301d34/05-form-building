@@ -78,24 +78,20 @@ articleView.setTeasers = () => {
 
 
 
-// COMMENT: Where is this function called? Why?
-// This function is being called on new.html to allow the
+// COMMENTED: Where is this function called? Why?
+// This function is being called on new.html.  We don't need this function to run at any other time or on any other page so we called it on the new.html page specifically.
 articleView.initNewArticlePage = () => {
   // TODO: Ensure the main .tab-content area is revealed. We might add more tabs later or otherwise edit the tab navigation.
+  // -> I'm not sure what to do here.  Main tab-content is specifically referring to the section with the form. Wouldn't I want to do this to the nav.tab instead?
 
 
-  // TODO: The new articles we create will be copy/pasted into our source data file.
+  // DONE: The new articles we create will be copy/pasted into our source data file.
   // Set up this "export" functionality. We can hide it for now, and show it once we have data to export.
-  //DIFFERENT ->
   $('#article-export').hide();
-  // <- DIFFERENT
 
 
-  //SAME
   $('#article-json').on('focus', function(){
     this.select();
-    //DIFFERENT
-    //document.execCommand('copy');
   });
 
   // DONE: Add an event handler to update the preview and the export field if any inputs change.
@@ -109,7 +105,8 @@ articleView.initNewArticlePage = () => {
 articleView.create = () => {
   console.log ('is this even working? AUGH!!!!')
   // TODO: Set up a variable to hold the new article we are creating.
-  // let newPost = [];
+  // -> I'm not sure what to do here.  I tried setting up an empty array to capture the info, but then didn't end up using the variable so I deleted it.  What is supposed to go here?
+
   // Clear out the #articles element, so we can put in the updated preview
   $('#articles').html('');
 
@@ -124,16 +121,15 @@ articleView.create = () => {
   });
 
 
-  //SAME
   // DONE: Use our interface to the Handblebars template to put this new article into the DOM:
-  $('#articles').append(newArticle.toHtml()); //and append it like on line 121 so all NEW ones show
+  $('#articles').append(newArticle.toHtml());
 
-  // TODO: Activate the highlighting of any code blocks; look at the documentation for hljs to see how to do this by placing a callback function in the .each():
+  // DONE: Activate the highlighting of any code blocks; look at the documentation for hljs to see how to do this by placing a callback function in the .each():
   $('pre code').each(function (i, block) {
     hljs.highlightBlock(block);
   });
 
-  // TODO: Show our export field, and export the new article as JSON, so it's ready to copy/paste into blogArticles.js:
+  // DONE: Show our export field, and export the new article as JSON, so it's ready to copy/paste into blogArticles.js:
   //it changed on the focus - look for events
   $('#article-export').show();
   $('#article-json').attr('placeholder', JSON.stringify(newArticle));
@@ -144,7 +140,7 @@ articleView.create = () => {
 
 
 // COMMENT: Where is this function called? Why?
-// PUT YOUR RESPONSE HERE
+// This is being  called on the index.html page since the other page doesn't need to run the functions below.
 articleView.initIndexPage = () => {
   articles.forEach(articleElement => $('#articles').append(articleElement.toHtml()));
   articleView.populateFilters();
