@@ -81,23 +81,33 @@ articleView.setTeasers = () => {
 // COMMENT: Where is this function called? Why?
 // This function is being called on new.html to allow the
 articleView.initNewArticlePage = () => {
-  let newTemplate = Handlebars.compile($('#new-article-template').text());
+  //DIFFERENT ->
+  // let newTemplate = Handlebars.compile($('#new-article-template').text());
+  // <- DIFFERENT
 
   // TODO: Ensure the main .tab-content area is revealed. We might add more tabs later or otherwise edit the tab navigation.
 
 
   // TODO: The new articles we create will be copy/pasted into our source data file.
   // Set up this "export" functionality. We can hide it for now, and show it once we have data to export.
+  //DIFFERENT ->
   $('#article-export').hide();
+  // <- DIFFERENT
 
+
+  //SAME
   $('#article-json').on('focus', function(){
     this.select();
+    //DIFFERENT
+    //document.execCommand('copy');
   });
 
-  // TODO: Add an event handler to update the preview and the export field if any inputs change.
+  // DONE: Add an event handler to update the preview and the export field if any inputs change.
   $('#new-form').on('change', 'input', 'textarea', articleView.create);
-  return newTemplate(this);
 
+  //DIFFERENT ->
+  // return newTemplate(this);
+  // <-DIFFERENT
 };
 
 
@@ -105,12 +115,13 @@ articleView.initNewArticlePage = () => {
 
 //This will be our callback for when we change focus on the new page
 articleView.create = () => {
+  console.log ('is this even working? AUGH!!!!')
   // TODO: Set up a variable to hold the new article we are creating.
-
+  // let newPost = [];
   // Clear out the #articles element, so we can put in the updated preview
-  // $('#articles').hide();
+  $('#articles').html('');
 
-  // TODO: Instantiate an article based on what's in the form fields:
+  // DONE: Instantiate an article based on what's in the form fields:
   let newArticle = new Article({
     title: $('#article-title').val(),
     author: $('#article-author').val(),
@@ -121,10 +132,16 @@ articleView.create = () => {
   });
 
 
-  // TODO: Use our interface to the Handblebars template to put this new article into the DOM:
-  newArticle.toHtml(); //and append it like on line 121 so all NEW ones show
-  $('#articles').append(newArticle);
+  //SAME
+  // DONE: Use our interface to the Handblebars template to put this new article into the DOM:
+  $('#articles').append(newArticle.toHtml()); //and append it like on line 121 so all NEW ones show
 
+  //DIFFERENT ->
+  // newPost.forEach(articleObject => newArticle.push(new Article(articleObject)))
+  // newPost.forEach(articleElement => $('#articles').append(articleElement.toHtml()));
+
+  // $('#articles').fadeIn(750);
+  // <- DIFFERENT
 
   // TODO: Activate the highlighting of any code blocks; look at the documentation for hljs to see how to do this by placing a callback function in the .each():
   $('pre code').each(function (i, block) {
