@@ -75,6 +75,7 @@ articleView.setTeasers = () => {
 };
 
 // COMMENT: Where is this function called? Why?
+// It's called from a script element at the bottom of new.html. Called so that the functions specific to that page (in particular the event listener) get loaded.
 
 articleView.initNewArticlePage = () => {
   // TODO: Ensure the main .tab-content area is revealed. We might add more tabs later or otherwise edit the tab navigation.
@@ -94,27 +95,31 @@ articleView.initNewArticlePage = () => {
 
 articleView.createPreview = () => {
   console.log('createPreview entered');
-  // TODO: Set up a variable to hold the new article we are creating.
+  // DONE: Set up a variable to hold the new article we are creating.
   // Clear out the #articles element, so we can put in the updated preview
   $('#articles').html('');
 
-  // TODO: Instantiate an article based on what's in the form fields:
+  // DONE: Instantiate an article based on what's in the form fields:
+  console.log($('#article-body').val());
+  console.log(marked($('#article-body').val()));
   let newArticle = new Article({
     title: $('#article-title').val(),
     author: $('#article-author').val(),
     authorUrl: $('#article-authorUrl').val(),
-    body: `<p>${$('#article-body').val().replace(/\n/g,'</p><p>')}</p>`.replace(/<p><\/p>$/,''),  //? what about paragraph formating or images?
+    body: marked($('#article-body').val()).replace(/\n/g, ''),
     publishedOn: $('#article-publish:checked').length ? new Date() : null,
     category: $('#article-category').val()
   });
 
-  // TODO: Use our interface to the Handblebars template to put this new article into the DOM:
+  // DONE: Use our interface to the Handblebars template to put this new article into the DOM:
   $('#articles').append(newArticle.toHtml());
 
   // TODO: Activate the highlighting of any code blocks; look at the documentation for hljs to see how to do this by placing a callback function in the .each():
-  $('pre code').each();
+  // $('div.code').each(function(i, block) {
+  //   hljs.highlightBlock(block);
+  // });
 
-  // TODO: Show our export field, and export the new article as JSON, so it's ready to copy/paste into blogArticles.js:
+  // DONE: Show our export field, and export the new article as JSON, so it's ready to copy/paste into blogArticles.js:
   let s = JSON.stringify(newArticle);
   console.log(s);
   $('#article-json').val(JSON.stringify(newArticle));
