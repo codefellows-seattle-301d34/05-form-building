@@ -81,7 +81,7 @@ articleView.setTeasers = () => {
 // it is called just before the closing body tag in the html file, so that the new articles are rendered after all of the other content on the page has loaded.
 
 articleView.initNewArticlePage = () => {
-  // TODO: Ensure the main .tab-content area is revealed. We might add more tabs later or otherwise edit the tab navigation.
+  // DONE: Ensure the main .tab-content area is revealed. We might add more tabs later or otherwise edit the tab navigation.
   $('.tab-content').show();
 
   // TODO: The new articles we create will be copy/pasted into our source data file.
@@ -109,9 +109,9 @@ articleView.create = () => {
     body: $('#article-body').val(),
     publishedOn: $('#article-published:checked').length ? new Date() : null,
   });
-  console.log(newArticle);
-  // TODO: Use our interface to the Handblebars template to put this new article into the DOM:
 
+  // TODO: Use our interface to the Handblebars template to put this new article into the DOM:
+  $('#articles').empty();
   $('#articles').append(newArticle.toHtml());
 
   // TODO: Activate the highlighting of any code blocks; look at the documentation for hljs to see how to do this by placing a callback function in the .each():
