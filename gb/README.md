@@ -27,9 +27,6 @@ They would need to fork the application from GitHub, clone down the link from th
 ## Change Log
 Use this are to document the iterative changes made to your application as each feature is successfully implemented. Use time stamps. Here's an examples:
 
-05-11-2018 9:08 - Started by forking and cloning the Repo from Code Fellows GitHub
-05-11-2018 9:17 - Started solving TODO's
-
 
 ## Credits and Collaborations
 <!-- Give credit (and a link) to other people or resources that helped you build this application. -->
