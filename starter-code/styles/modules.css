@@ -26,6 +26,10 @@ nav li {
   border-bottom: 1px solid #ccc;
 }
 
+#article-published {
+  font-size: 1.5em;
+}
+
 /* === ARTICLE FORMATTING === */
 
 address {

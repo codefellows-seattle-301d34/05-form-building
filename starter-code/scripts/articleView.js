@@ -53,7 +53,7 @@ articleView.handleMainNav = () => {
     $('.tab-content').hide();
     $(`#${$(this).data('content')}`).fadeIn();
   });
-
+  
   $('nav .tab:first').click();
 };
 
@@ -76,9 +76,9 @@ articleView.setTeasers = () => {
 
 // COMMENT: Where is this function called? Why?
 // PUT YOUR RESPONSE HERE
-articleView.initNewArticlePage = () => {
+articleView.newArticlePage = () => {
   // TODO: Ensure the main .tab-content area is revealed. We might add more tabs later or otherwise edit the tab navigation.
-
+$('#write').show();
 
   // TODO: The new articles we create will be copy/pasted into our source data file.
   // Set up this "export" functionality. We can hide it for now, and show it once we have data to export.
@@ -88,7 +88,6 @@ articleView.initNewArticlePage = () => {
   $('#article-json').on('focus', function(){
     this.select();
   });
-
   // TODO: Add an event handler to update the preview and the export field if any inputs change.
 $('#new-form').on('change', 'input, text-area', articleView.create);
 };
@@ -97,23 +96,28 @@ articleView.create = () => {
   // TODO: Set up a variable to hold the new article we are creating.
   // Clear out the #articles element, so we can put in the updated preview
 
+    
 
   // TODO: Instantiate an article based on what's in the form fields:
    let newArticle = new Article({
      title: $('#article-title').val(),
      author: $('#article-author').val(),
+     authorUrl: $('#article-authorUrl').val(),
+     category: $('#article-category').val(),
      // sets the value of "publishedOn" here
      publishedOn: $('#article-published:checked').length ? new Date () : null,
-    //  title: $('#article-title').val(),
-    //  title: $('#article-title').val(),
-    //  title: $('#article-title').val(),
-    //  title: $('#article-title').val(),
+     body: $('#article-body').val(),
    });
 
   // TODO: Use our interface to the Handblebars template to put this new article into the DOM:
   // THIS IS NOT WORKING RIGHT NOW
   // THE FOLLOWING CODE NEEDS TO BE ADJUSTED
-  newArticle.toHtml();
+  alert('title: ' + newArticle.title + '\nauthor: ' + newArticle.author + '\nauthor URL: ' + newArticle.authorUrl + '\ncategory: ' + newArticle.category + '\npublishedOn: ' + newArticle.publishedOn + '\nbody: ' + newArticle.body);
+
+  // $newArticle.on('checked', function (e) {
+  //   e.preventDefault();
+  //   let $newArticle = "#article-template".toHtml();
+  // };
 
 
   // TODO: Activate the highlighting of any code blocks; look at the documentation for hljs to see how to do this by placing a callback function in the .each():
@@ -126,11 +130,12 @@ articleView.create = () => {
 // "Code that will run on change of focus"
 // "Use this as callback function up above as articleView.create =()"
 // Use articleView.create as callback function for articleView.initNewArticlePage
-
+  
+  //write info to article-export field and show the field (it was hidden on page init) 
 };
 
-// COMMENT: Where is this function called? Why?
-// PUT YOUR RESPONSE HERE
+// COMMENTED: Where is this function called? Why?
+// This function is called at the bottom of index.html.  It calls all the functions required to instantiate the articles, fill the filters for later use, add functionality for the nav buttons, and set the article view to "teaser" where the user has to click on the button to show the rest of the requested article. 
 articleView.initIndexPage = () => {
   articles.forEach(articleElement => $('#articles').append(articleElement.toHtml()));
   articleView.populateFilters();
