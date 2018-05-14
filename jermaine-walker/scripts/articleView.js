@@ -96,18 +96,18 @@ articleView.create = () => {
   // Clear out the #articles element, so we can put in the updated preview
 
 
-  // TODO: Instantiate an article based on what's in the form fields:
-  let newArticle = new Article( { 
+  // DONE: Instantiate an article based on what's in the form fields:
+  let newArticle = new Article( {
     author: $( '#article-author' ).val(),
     authorUrl: $( '#article-url' ).val(),
     title: $( '#article-title' ).val(),
-    category: $('#article-category').val(),
-    body: $('#article-body').val(),
-    publishedOn: $('#article-published:checked').length ? new Date() : null,
-   } ); 
+    category: $( '#article-category' ).val(),
+    body: $( '#article-body' ).val(),
+    publishedOn: $( '#article-published:checked' ).length ? new Date() : null,
+  } );
 
   // TODO: Use our interface to the Handblebars template to put this new article into the DOM:
-
+  $( '#articles' ).append( newArticle.toHtml() );
 
   // TODO: Activate the highlighting of any code blocks; look at the documentation for hljs to see how to do this by placing a callback function in the .each():
   $( 'pre code' ).each();
@@ -119,7 +119,7 @@ articleView.create = () => {
 // COMMENT: Where is this function called? Why?
 // PUT YOUR RESPONSE HERE
 articleView.initIndexPage = () => {
-  articles.forEach( article => $( '#articles' ).append( article.toHtml() ) );
+  articles.forEach( articleElem => $( '#articles' ).append( articleElem.toHtml() ) );
   articleView.populateFilters();
   articleView.handleCategoryFilter();
   articleView.handleAuthorFilter();
