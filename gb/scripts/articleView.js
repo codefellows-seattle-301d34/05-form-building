@@ -78,6 +78,13 @@ articleView.setTeasers = () => {
 // PUT YOUR RESPONSE HERE
 articleView.initNewArticlePage = () => {
   // TODO: Ensure the main .tab-content area is revealed. We might add more tabs later or otherwise edit the tab navigation.
+  $('nav').on('click', '.tab', function(e) {
+    e.preventDefault();
+    $('.tab-content').hide();
+    $(`#${$(this).data('content')}`).fadeIn();
+  });
+
+  $('nav .tab:first').click();
   // TODO: The new articles we create will be copy/pasted into our source data file.
   // Set up this "export" functionality. We can hide it for now, and show it once we have data to export.
   $('#article-export').hide();
@@ -110,7 +117,7 @@ articleView.create = () => {
 
   // TODO: Activate the highlighting of any code blocks; look at the documentation for hljs to see how to do this by placing a callback function in the .each():
   $('pre code').each(function(i, block) {
-
+    hljs.highlightBlock(block);
   });
 
   // TODO: Show our export field, and export the new article as JSON, so it's ready to copy/paste into blogArticles.js:
@@ -121,7 +128,7 @@ articleView.create = () => {
 // PUT YOUR RESPONSE HERE
 //
 articleView.initIndexPage = () => {
-  articles.forEach(article => $('#articles').append(article.toHtml()));
+  articles.forEach(articleElement => $('#articles').append(articleElement.toHtml()));
   articleView.populateFilters();
   articleView.handleCategoryFilter();
   articleView.handleAuthorFilter();
