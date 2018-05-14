@@ -75,41 +75,55 @@ articleView.setTeasers = () => {
 };
 
 // COMMENT: Where is this function called? Why?
+
 // PUT YOUR RESPONSE HERE
+// it is called just before the closing body tag in the html file, so that the new articles are rendered after all of the other content on the page has loaded.
+
 articleView.initNewArticlePage = () => {
   // TODO: Ensure the main .tab-content area is revealed. We might add more tabs later or otherwise edit the tab navigation.
-
+  $('.tab-content').show();
 
   // TODO: The new articles we create will be copy/pasted into our source data file.
   // Set up this "export" functionality. We can hide it for now, and show it once we have data to export.
+  $('#article-export').hide();
 
   $('#article-json').on('focus', function(){
     this.select();
   });
 
   // TODO: Add an event handler to update the preview and the export field if any inputs change.
-
+  $('#new-form').on('change', 'input, textarea', articleView.create);
 };
 
 articleView.create = () => {
   // TODO: Set up a variable to hold the new article we are creating.
   // Clear out the #articles element, so we can put in the updated preview
 
-
   // TODO: Instantiate an article based on what's in the form fields:
-
+  let newArticle = new Article({
+    title: $('article-title').val(),
+    category: $('article-category').val(),
+    author: $('article-author').val(),
+    authorUrl: $('article-author-url').val(),
+    body: $('article-body').val(),
+    publishedOn: $('#article-published:checked').length ? new Date() : null,
+  });
 
   // TODO: Use our interface to the Handblebars template to put this new article into the DOM:
 
+  $('#articles').append(newArticle.toHtml());
 
   // TODO: Activate the highlighting of any code blocks; look at the documentation for hljs to see how to do this by placing a callback function in the .each():
   $('pre code').each();
 
   // TODO: Show our export field, and export the new article as JSON, so it's ready to copy/paste into blogArticles.js:
-
+  $('#article-export').show();
+  $('#article-json').val('working');
 };
 
 // COMMENT: Where is this function called? Why?
+// this function is called at the end of the html files, before the closing body tag. this way it will set up the page with event listeners, and render the articles when the page is loaded.
+
 // PUT YOUR RESPONSE HERE
 articleView.initIndexPage = () => {
   articles.forEach(article => $('#articles').append(article.toHtml()));
