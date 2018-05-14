@@ -81,10 +81,6 @@ articleView.setTeasers = () => {
 // COMMENT: Where is this function called? Why?
 // This function is being called on new.html to allow the
 articleView.initNewArticlePage = () => {
-  //DIFFERENT ->
-  // let newTemplate = Handlebars.compile($('#new-article-template').text());
-  // <- DIFFERENT
-
   // TODO: Ensure the main .tab-content area is revealed. We might add more tabs later or otherwise edit the tab navigation.
 
 
@@ -104,10 +100,6 @@ articleView.initNewArticlePage = () => {
 
   // DONE: Add an event handler to update the preview and the export field if any inputs change.
   $('#new-form').on('change', 'input', 'textarea', articleView.create);
-
-  //DIFFERENT ->
-  // return newTemplate(this);
-  // <-DIFFERENT
 };
 
 
@@ -136,13 +128,6 @@ articleView.create = () => {
   // DONE: Use our interface to the Handblebars template to put this new article into the DOM:
   $('#articles').append(newArticle.toHtml()); //and append it like on line 121 so all NEW ones show
 
-  //DIFFERENT ->
-  // newPost.forEach(articleObject => newArticle.push(new Article(articleObject)))
-  // newPost.forEach(articleElement => $('#articles').append(articleElement.toHtml()));
-
-  // $('#articles').fadeIn(750);
-  // <- DIFFERENT
-
   // TODO: Activate the highlighting of any code blocks; look at the documentation for hljs to see how to do this by placing a callback function in the .each():
   $('pre code').each(function (i, block) {
     hljs.highlightBlock(block);
@@ -150,6 +135,8 @@ articleView.create = () => {
 
   // TODO: Show our export field, and export the new article as JSON, so it's ready to copy/paste into blogArticles.js:
   //it changed on the focus - look for events
+  $('#article-export').show();
+  $('#article-json').attr('placeholder', JSON.stringify(newArticle));
 
 };
 
