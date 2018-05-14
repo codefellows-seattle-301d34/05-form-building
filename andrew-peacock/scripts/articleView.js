@@ -75,10 +75,10 @@ articleView.setTeasers = () => {
 };
 
 // COMMENT: Where is this function called? Why?
-// PUT YOUR RESPONSE HERE
+// This function is called in new.html, so that the new information can be displayed on pageload.
 articleView.initNewArticlePage = () => {
-  // TODO: Ensure the main .tab-content area is revealed. We might add more tabs later or otherwise edit the tab navigation.
-
+  // DONE: Ensure the main .tab-content area is revealed. We might add more tabs later or otherwise edit the tab navigation.
+  $('.tab-content').show();
 
   // TODO: The new articles we create will be copy/pasted into our source data file.
   // Set up this "export" functionality. We can hide it for now, and show it once we have data to export.
@@ -90,21 +90,25 @@ articleView.initNewArticlePage = () => {
   });
 
 
-  // TODO: Add an event handler to update the preview and the export field if any inputs change.
-  $('#new-form').on('change', 'input, textarea' articleView.create);
+  // DONE: Add an event handler to update the preview and the export field if any inputs change.
+  $('#new-form').on('change', 'input, textarea', articleView.create);
 
 };
 
 articleView.create = () => {
-  // TODO: Set up a variable to hold the new article we are creating.
+  // DONE: Set up a variable to hold the new article we are creating.
   // Clear out the #articles element, so we can put in the updated preview
 
 
-  // TODO: Instantiate an article based on what's in the form fields:
+  // DONE: Instantiate an article based on what's in the form fields:
 let newArticle = new Article({
-  title:$('#article-title').val(),
+  title: $('#article-title').val(),
   author: $('#article-author').val(),
   publishedOn: $('#article-published:checked').length ? new Date() : null, 
+  category: $('#article-category').val(),
+  authorUrl: $('#article-aurthorUrl').val(),
+  body: $('#article-body').val()
+
   //keep going for all properties
 });
 
@@ -115,11 +119,12 @@ let newArticle = new Article({
   $('pre code').each();
 
   // TODO: Show our export field, and export the new article as JSON, so it's ready to copy/paste into blogArticles.js:
-
+  $('#article-export').show();
+  newArticle.stringify();
 };
 
 // COMMENT: Where is this function called? Why?
-// PUT YOUR RESPONSE HERE
+// This function is called in our index.html page, and it is called there because everything that it performs is done on page load, since this is a living web page that could be updated many times in a day without ever touching the html/js files. 
 articleView.initIndexPage = () => {
   articles.forEach(articleElement => $('#articles').append(articleElement.toHtml()));
   articleView.populateFilters();

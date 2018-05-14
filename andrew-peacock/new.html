@@ -12,6 +12,7 @@
     <!-- NOTE (stretch goal): To fully incorporate the highlighting library "hljs" we need to fill the empty link tag below to refer to a CSS file that will handle our text highlighting -->
     <link>
     <!-- TODO: We want our new article form to be able to display a preview of the article that is being entered. Thus, we need code here that will recreate the same structure of our other articles. What do you think we need to add here? -->
+    
     </head>
   <body>
     <header class="clearfix">
@@ -34,7 +35,7 @@
 
       <section id="write" class="tab-content">
         <h1>Create New Article</h1>
-        <!-- TODO: Set up a form to accept user input for a new blog article. Remember that we need:
+        <!-- DONE: Set up a form to accept user input for a new blog article. Remember that we need:
            1. Article title
            2. Article body
            3. Article author
@@ -44,10 +45,19 @@
            <form id="new-form">
              <label>
                <input type="text" id="textBox" placeholder="Article Title" required>
-             </label>
-             <textarea id="article-body" cols="30" rows="10"></textarea>
+              </label>
+              <textarea id="article-body" cols="30" rows="10"></textarea>
+              <label>
+                <input type="text" id="authorBox" placeholder="Article Author" required>
+              </label>
+              <label>
+                <input type ="text" id="categoryBox" placeholder="Category" required>
+              </label>
+              <label>
+                <input type="text" id="authorUrlBox" placeholder="Author URL" required>
+              </label>
+              <input type="checkbox" id="article-published">Published, bruh
              <label>
-               <input type="checkbox" id="article-published">Published, bruh
              </label>
            </form>
       </section>
@@ -57,10 +67,10 @@
       </section>
 
       <section id="article-export">
-        <!-- TODO: Refer to the preview image to see what we will be building here: we need a container of some kind to hold a JSON export of our article. Ideally this container would show only a incipit (short preview) of the JSON and also be clickable to allow easy selection of the text it holds. What kind of element could we use for this? -->
+        <!-- DONE: Refer to the preview image to see what we will be building here: we need a container of some kind to hold a JSON export of our article. Ideally this container would show only a incipit (short preview) of the JSON and also be clickable to allow easy selection of the text it holds. What kind of element could we use for this? -->
         <label class="pull-right">
           <input type="text" id="article-json" readonly>
-          When finalized, cpy the above JSON and paste into blogArticle.js
+          When finalized, copy the above JSON and paste into blogArticle.js
         </label>
       </section>
 
@@ -76,12 +86,12 @@
     <script src="scripts/article.js"></script>
     <script src="scripts/articleView.js"></script>
     <script>
-      // TODO: We will need to call a function here to initialize the behaviors on this page, once we get them built out. Why?
+      // DONE: We will need to call a function here to initialize the behaviors on this page, once we get them built out. Why?
       // (Look at the bottom of index.html as a reference. Since we are now using our JS on two different HTML pages that have different needs as to what parts of the code they utilize, we need to build a function that inializes each page.)
       //  Hint: Look in articleView.js for a function that does this.
-
+      articleView.initNewArticlePage()
       // COMMENT: What is this function doing? Why do we need it?
-      // PUT YOUR RESPONSE HERE
+      // This function is doing the same thing as initIndexPage, kind of. It displays JSON information and allows the site to stay malleable from URL access instead of file changes. 
     </script>
   </body>
 </html>
