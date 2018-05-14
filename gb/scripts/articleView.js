@@ -98,7 +98,7 @@ articleView.initNewArticlePage = () => {
 articleView.create = () => {
   // TODO: Set up a variable to hold the new article we are creating.
   // Clear out the #articles element, so we can put in the updated preview
-
+  $('#articles').empty();
 
   // TODO: Instantiate an article based on what's in the form fields:
   let articleNew = new Article({
@@ -107,21 +107,23 @@ articleView.create = () => {
     authorUrl: $('#article-url').val(),
     category: $('#article-category').val(),
     body: $('#article-body').val(),
-    publishedOn: $('article-published:checked').length ? new Date() : null,
+    publishedOn: $('#article-published:checked').length ? new Date() : null,
 
   });
 
   // TODO: Use our interface to the Handblebars template to put this new article into the DOM:
-  articleNew.toHtml();
+  $('#articles').append(articleNew.toHtml());
   //append the new one
 
   // TODO: Activate the highlighting of any code blocks; look at the documentation for hljs to see how to do this by placing a callback function in the .each():
-  $('pre code').each(function(i, block) {
-    hljs.highlightBlock(block);
-  });
+  // $('pre code').each(function(i, block) {
+  //   hljs.highlightBlock(block);
+  // });
 
   // TODO: Show our export field, and export the new article as JSON, so it's ready to copy/paste into blogArticles.js:
-//acess that input from ID and get the value, think about what you know about JSON
+  //acess that input from ID and get the value, think about what you know about JSON
+  $('#article-export').show();
+  $('#article-json').val(JSON.stringify(articleNew));
 };
 
 // COMMENT: Where is this function called? Why?
