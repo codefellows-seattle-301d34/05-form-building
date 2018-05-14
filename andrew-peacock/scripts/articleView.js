@@ -99,6 +99,7 @@ articleView.create = () => {
   // DONE: Set up a variable to hold the new article we are creating.
   // Clear out the #articles element, so we can put in the updated preview
 $('#articles').empty();
+$('#articles').show();
 
   // DONE: Instantiate an article based on what's in the form fields:
 let newArticle = new Article({
@@ -106,7 +107,7 @@ let newArticle = new Article({
   author: $('#article-author').val(),
   publishedOn: $('#article-published:checked').length ? new Date() : null, 
   category: $('#article-category').val(),
-  authorUrl: $('#article-aurthorUrl').val(),
+  authorUrl: $('#article-authorUrl').val(),
   body: $('#article-body').val()
 
   //keep going for all properties
