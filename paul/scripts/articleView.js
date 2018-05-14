@@ -90,7 +90,7 @@ articleView.initNewArticlePage = () => {
   });
 
   // DONE: Add an event handler to update the preview and the export field if any inputs change.
-  $('#new-form').on('change', 'input, textarea', articleView.create);
+  $('#new-form').on('change', 'input, textarea, checkbox', articleView.create);
 };
 
 articleView.create = () => {
@@ -105,7 +105,7 @@ articleView.create = () => {
     author: $('#article-author').val(),
     authorUrl: $('#author-url').val(),
     body : $('#article-body').val(),
-    publishedOn: $('article-published:checked').length ? new Date() : null,
+    publishedOn: $('#article-published:checked').length ? new Date() : null,
   });
 
   // DONE: Use our interface to the Handblebars template to put this new article into the DOM:
