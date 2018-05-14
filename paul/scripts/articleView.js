@@ -82,7 +82,7 @@ articleView.initNewArticlePage = () => {
 
   // TODO: The new articles we create will be copy/pasted into our source data file.
   // Set up this "export" functionality. We can hide it for now, and show it once we have data to export.
-  $('article-export').hide();
+  $('#article-export').hide();
 
 
   $('#article-json').on('focus', function(){
@@ -90,7 +90,7 @@ articleView.initNewArticlePage = () => {
   });
 
   // DONE: Add an event handler to update the preview and the export field if any inputs change.
-  $('new-form').on('change', 'input, textarea', articleView.create);
+  $('#new-form').on('change', 'input, textarea', articleView.create);
 };
 
 articleView.create = () => {
@@ -121,7 +121,7 @@ articleView.create = () => {
 };
 
 // COMMENT: Where is this function called? Why?
-// PUT YOUR RESPONSE HERE
+// This function is called at the bottom of index.html, in order to parse of the data from blogArticles.js and post this information into the DOM - utilizing the Handlebars template for layout. This function also initializes the options/functionality of the content filters, as well as the functionality of the "Read on" and "Show Less" buttons.
 articleView.initIndexPage = () => {
   articles.forEach(articleElement => $('#articles').append(articleElement.toHtml()));
   articleView.populateFilters();
