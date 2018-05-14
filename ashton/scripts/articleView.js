@@ -1,3 +1,4 @@
+/* globals articles */
 'use strict';
 
 let articleView = {};
@@ -118,7 +119,7 @@ articleView.create = () => {
 
   // TODO: Show our export field, and export the new article as JSON, so it's ready to copy/paste into blogArticles.js:
   $('#article-export').show();
-  $('#article-json').val('working');
+  $('#article-json').val(JSON.stringify(newArticle));
 };
 
 // COMMENT: Where is this function called? Why?
