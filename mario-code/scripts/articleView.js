@@ -77,10 +77,10 @@ articleView.setTeasers = () => {
 // COMMENT: Where is this function called? Why?
 // called in the new.html because index and new is sharing one JS file. Therefore the initNewArticlePage refering to the new.html needs to be called in the new.html
 articleView.initNewArticlePage = () => {
-  // TODO: Ensure the main .tab-content area is revealed. We might add more tabs later or otherwise edit the tab navigation.
+  // DONE: Ensure the main .tab-content area is revealed. We might add more tabs later or otherwise edit the tab navigation.
   $('.tab-content').show();
 
-  // TODO: The new articles we create will be copy/pasted into our source data file.
+  // DONE: The new articles we create will be copy/pasted into our source data file.
   // Set up this "export" functionality. We can hide it for now, and show it once we have data to export.
   $('#article-export').hide();
 
@@ -93,11 +93,11 @@ articleView.initNewArticlePage = () => {
 };
 
 articleView.create = () => {
-  // TODO: Set up a variable to hold the new article we are creating.
+  // DONE: Set up a variable to hold the new article we are creating.
   // Clear out the #articles element, so we can put in the updated preview
   $('#articles').empty();
 
-  // TODO: Instantiate an article based on what's in the form fields:
+  // DONE: Instantiate an article based on what's in the form fields:
   let newArticle = new Article ({
     author: $('#article-author').val(),
     authorUrl: $('#article-aurthorUrl').val(),
@@ -107,7 +107,7 @@ articleView.create = () => {
     publishedOn: $('#article-published:checked').length ? new Date() : null,
   })
 
-  // TODO: Use our interface to the Handblebars template to put this new article into the DOM:
+  // DONE: Use our interface to the Handblebars template to put this new article into the DOM:
   $('#articles').append(newArticle.toHtml());
 
   // TODO: Activate the highlighting of any code blocks; look at the documentation for hljs to see how to do this by placing a callback function in the .each():
@@ -117,11 +117,11 @@ articleView.create = () => {
 
   // TODO: Show our export field, and export the new article as JSON, so it's ready to copy/paste into blogArticles.js:
   $('#article-export').show();
-  $('#article-export').text(JSON.stringify(newArticle));
+  $('#article-json').attr('placeholder', JSON.stringify(newArticle));
 };
 
 // COMMENT: Where is this function called? Why?
-// PUT YOUR RESPONSE HERE
+// These codes are called on the index.html where the filters need to be populated.
 articleView.initIndexPage = () => {
   articles.forEach(articleElement => $('#articles').append(articleElement.toHtml()));
   articleView.populateFilters();

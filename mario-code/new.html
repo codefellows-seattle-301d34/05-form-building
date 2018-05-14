@@ -64,14 +64,14 @@
            </form>
       </section>
 
-      <section id="articles" class="tab-content">
+      <section id="articles" class="tab-content" onClick="this.select();">
         <!-- NOTE: This is where we will display our article preview -->
       </section>
 
       <section id="article-export">
         <!-- DONE: Refer to the preview image to see what we will be building here: we need a container of some kind to hold a JSON export of our article. Ideally this container would show only a incipit (short preview) of the JSON and also be clickable to allow easy selection of the text it holds. What kind of element could we use for this? -->
         <label class="pull-right">
-          <input type="text" id="article-json" readonly>
+          <input type="text" id="article-json" >
           When finalized, copt the above JSON and paste into blogArticle.js
         </label>
       </section>
@@ -95,6 +95,7 @@
       // COMMENT: What is this function doing? Why do we need it?
       // This is the function that puts the envent handler on each of the form and it displays JSON.
       articleView.initNewArticlePage();
+      articleView.handleMainNav();
     </script>
   </body>
 </html>
