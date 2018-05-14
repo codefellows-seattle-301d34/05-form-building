@@ -18,7 +18,11 @@ Article.prototype.toHtml = function() {
   this.publishStatus = this.publishedOn ? `published ${this.daysAgo} days ago` : '(draft)';
 
   // STRETCH: Pass the article body into the marked.js library to format our Markdown input
-
+  // TW: marked embeds html tags so I don't see the need to run
+  // the body through marked again. See last article in the index.
+  // I've added the highlight CSS link to index.html but it's not
+  // working (at 9:30 sunday night...).
+  
   return template(this);
 };
 
