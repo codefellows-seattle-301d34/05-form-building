@@ -74,16 +74,11 @@ articleView.setTeasers = () => {
   });
 };
 
-
-
-
-
 // COMMENTED: Where is this function called? Why?
 // This function is being called on new.html.  We don't need this function to run at any other time or on any other page so we called it on the new.html page specifically.
 articleView.initNewArticlePage = () => {
-  // TODO: Ensure the main .tab-content area is revealed. We might add more tabs later or otherwise edit the tab navigation.
-  // -> I'm not sure what to do here.  Main tab-content is specifically referring to the section with the form. Wouldn't I want to do this to the nav.tab instead?
-
+  // DONE: Ensure the main .tab-content area is revealed. We might add more tabs later or otherwise edit the tab navigation.
+  $('.tab-content').show();
 
   // DONE: The new articles we create will be copy/pasted into our source data file.
   // Set up this "export" functionality. We can hide it for now, and show it once we have data to export.
@@ -98,14 +93,9 @@ articleView.initNewArticlePage = () => {
   $('#new-form').on('change', 'input', 'textarea', articleView.create);
 };
 
-
-
-
 //This will be our callback for when we change focus on the new page
 articleView.create = () => {
-  console.log ('is this even working? AUGH!!!!')
-  // TODO: Set up a variable to hold the new article we are creating.
-  // -> I'm not sure what to do here.  I tried setting up an empty array to capture the info, but then didn't end up using the variable so I deleted it.  What is supposed to go here?
+  // DONE: Set up a variable to hold the new article we are creating.
 
   // Clear out the #articles element, so we can put in the updated preview
   $('#articles').html('');
@@ -132,14 +122,11 @@ articleView.create = () => {
   // DONE: Show our export field, and export the new article as JSON, so it's ready to copy/paste into blogArticles.js:
   //it changed on the focus - look for events
   $('#article-export').show();
-  $('#article-json').attr('placeholder', JSON.stringify(newArticle));
+  $('#article-json').val(JSON.stringify(newArticle));
 
 };
 
-
-
-
-// COMMENT: Where is this function called? Why?
+// COMMENTED: Where is this function called? Why?
 // This is being  called on the index.html page since the other page doesn't need to run the functions below.
 articleView.initIndexPage = () => {
   articles.forEach(articleElement => $('#articles').append(articleElement.toHtml()));
