@@ -93,7 +93,7 @@ articleView.initNewArticlePage = () => {
 };
 
 articleView.create = () => {
-  // TODO: Set up a variable to hold the new article we are creating.
+  // DONE: Set up a variable to hold the new article we are creating.
   // Clear out the #articles element, so we can put in the updated preview
 
 
