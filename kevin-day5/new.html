@@ -87,7 +87,12 @@
     <section id="article-export">
       <!-- DONE: Refer to the preview image to see what we will be building here: we need a container of some kind to hold a JSON export of our article. Ideally this container would show only a incipit (short preview) of the JSON and also be clickable to allow easy selection of the text it holds. What kind of element could we use for this? -->
       <label class="pull-right">
-        <input type="text" id="article-json" readonly> When finalized, copy the above JSON and paste into blogArticle.js
+        <textarea rows="10" cols="50" onclick="this.focus();this.select()" type="text" id="article-json" readonly>
+            {
+              "should_obtain_cookie_consent":false,
+              "is_bucketed":false,"experiments":{}
+            }
+       </textarea> When finalized, copy the above JSON and paste into blogArticle.js
       </label>
     </section>
 
@@ -106,7 +111,7 @@
       // DONE: We will need to call a function here to initialize the behaviors on this page, once we get them built out. Why?
       // (Look at the bottom of index.html as a reference. Since we are now using our JS on two different HTML pages that have different needs as to what parts of the code they utilize, we need to build a function that inializes each page.)
       //  Hint: Look in articleView.js for a function that does this.
-      articleView.initNewIndexPage()
+      articleView.initNewArticlePage();
       // COMMENT: What is this function doing? Why do we need it?
       // Just like the articleView.js you can see we need to still initialize all the other functions on page load. 
   </script>
