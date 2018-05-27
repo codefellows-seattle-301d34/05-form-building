@@ -53,7 +53,7 @@ articleView.handleMainNav = () => {
     $('.tab-content').hide();
     $(`#${$(this).data('content')}`).fadeIn();
   });
-
+  
   $('nav .tab:first').click();
 };
 
@@ -75,44 +75,64 @@ articleView.setTeasers = () => {
 };
 
 // COMMENT: Where is this function called? Why?
-// PUT YOUR RESPONSE HERE
-articleView.initNewArticlePage = () => {
+// This is called at the end of new.html.  It starts up the article.View.newArticlePage function found just below. 
+articleView.newArticlePage = () => {
   // TODO: Ensure the main .tab-content area is revealed. We might add more tabs later or otherwise edit the tab navigation.
+$('#write').show();
 
-
-  // TODO: The new articles we create will be copy/pasted into our source data file.
+  // DONE: The new articles we create will be copy/pasted into our source data file.
   // Set up this "export" functionality. We can hide it for now, and show it once we have data to export.
+
+  $('#article-export').hide();
 
   $('#article-json').on('focus', function(){
     this.select();
   });
-
-  // TODO: Add an event handler to update the preview and the export field if any inputs change.
-
+  // DONE: Add an event handler to update the preview and the export field if any inputs change.
+$('#new-form').on('change', 'input, text-area', articleView.create);
 };
 
 articleView.create = () => {
-  // TODO: Set up a variable to hold the new article we are creating.
+  // DONE: Set up a variable to hold the new article we are creating.
   // Clear out the #articles element, so we can put in the updated preview
+    let article;
+    $('#articles').empty(); 
 
+  // DONE: Instantiate an article based on what's in the form fields:
+   let newArticle = new Article({
+     title: $('#article-title').val(),
+     author: $('#article-author').val(),
+     authorUrl: $('#article-authorUrl').val(),
+     category: $('#article-category').val(),
+     // sets the value of "publishedOn" here
+     publishedOn: $('#article-published:checked').length ? new Date () : null,
+     body: $('#article-body').val(),
+   });
 
-  // TODO: Instantiate an article based on what's in the form fields:
+  // DONE: Use our interface to the Handblebars template to put this new article into the DOM:
+  // DONE: Activate the highlighting of any code blocks; look at the documentation for hljs to see how to do this by placing a callback function in the .each():
 
-
-  // TODO: Use our interface to the Handblebars template to put this new article into the DOM:
-
-
-  // TODO: Activate the highlighting of any code blocks; look at the documentation for hljs to see how to do this by placing a callback function in the .each():
-  $('pre code').each();
+  $('#articles').append(article.toHtml());
+  $('pre code').each(function(i, block) {
+    hljs.highlightBlock(block);
+  });
 
   // TODO: Show our export field, and export the new article as JSON, so it's ready to copy/paste into blogArticles.js:
-
+  // "Think about what you know about JSON"
+  // "Code that will run on change of focus"
+  // "Use this as callback function up above as articleView.create =()"
+  // Use articleView.create as callback function for articleView.initNewArticlePage
+  $('#export-field').show();
+  $('#article-json').val(`${JSON.stringify(article)},`);
 };
 
-// COMMENT: Where is this function called? Why?
-// PUT YOUR RESPONSE HERE
+  //write info to article-export field and show the field (it was hidden on page init) 
+
+
+// COMMENTED: Where is this function called? Why?
+// This function is called at the bottom of index.html.  It calls all the functions required to instantiate the articles, fill the filters for later use, add functionality for the nav buttons, and set the article view to "teaser" where the user has to click on the button to show the rest of the requested article. 
 articleView.initIndexPage = () => {
-  articles.forEach(article => $('#articles').append(article.toHtml()));
+  articles.forEach(articleElement => $('#articles').append(articleElement.toHtml()));
   articleView.populateFilters();
   articleView.handleCategoryFilter();
   articleView.handleAuthorFilter();
